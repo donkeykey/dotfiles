@@ -105,6 +105,23 @@ set mouse=a
 set ttymouse=xterm2
 " コマンドを画面最下部に表示する
 set showcmd
+" タブを表示するときの幅
+set tabstop=4
+" タブを挿入するときの幅
+set shiftwidth=4
+" タブをタブとして扱う(スペースに展開しない)
+set noexpandtab
+" 
+set softtabstop=0
+" オートインデント
+set autoindent
+" 括弧自動補完
+"inoremap { {}<LEFT>
+"inoremap [ []<LEFT>
+"inoremap ( ()<LEFT>
+" 行末"
+set whichwrap=b,s,h,l,<,>,[,]
+
  
  
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）

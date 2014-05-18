@@ -1,3 +1,4 @@
+zsh
 alias rm="rm -i"
 alias ls="ls -G -F"
 alias la="ls -a -G"
