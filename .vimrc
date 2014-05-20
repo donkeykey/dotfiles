@@ -1,7 +1,6 @@
 set nocompatible               " be iMproved
 filetype off
 
-
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
   call neobundle#rc(expand('~/.vim/bundle/'))
@@ -61,7 +60,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "colorscheme jellybeans
 "環境設定
 " エンコード
-set encoding=utf8
+"set encoding=utf8
 " ファイルエンコード
 set fileencoding=utf-8
 " スクロールする時に下が見えるようにする
@@ -106,6 +105,23 @@ set mouse=a
 set ttymouse=xterm2
 " コマンドを画面最下部に表示する
 set showcmd
+" タブを表示するときの幅
+set tabstop=4
+" タブを挿入するときの幅
+set shiftwidth=4
+" タブをタブとして扱う(スペースに展開しない)
+set noexpandtab
+" 
+set softtabstop=0
+" オートインデント
+set autoindent
+" 括弧自動補完
+"inoremap { {}<LEFT>
+"inoremap [ []<LEFT>
+"inoremap ( ()<LEFT>
+" 行末"
+set whichwrap=b,s,h,l,<,>,[,]
+
  
  
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
@@ -117,21 +133,6 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<C
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
 nnoremap j gj
 nnoremap k gk
-" Ctrl + hjkl でウィンドウ間を移動
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-" Ctrl + hjkl で移動
-"nnoremap <C-h> <S-Right>
-"nnoremap <C-j> <S-Down>
-"nnoremap <C-k> <S-UP>
-"nnoremap <C-l> <S-Left>
-" Shift + 矢印でウィンドウサイズを変更
-"nnoremap <S-Left>  <C-w><<CR>
-"nnoremap <S-Right> <C-w><CR>
-"nnoremap <S-Up>    <C-w>-<CR>
-"nnoremap <S-Down>  <C-w>+<CR>
 
 " ~/.vimrc.localが存在する場合のみ設定を読み込む
 let s:local_vimrc = expand('~/.vimrc.local')
@@ -234,11 +235,11 @@ au FileType ruby setlocal errorformat=%m\ in\ %f\ on\ line\ %l
  
 " Scala用設定
 " ファイルタイプの追加
-augroup filetypedetect
-autocmd! BufNewFile,BufRead *.scala setfiletype scala
-autocmd! BufNewFile,BufRead *.sbt setfiletype scala
-augroup END
-autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
+"augroup filetypedetect
+"autocmd! BufNewFile,BufRead *.scala setfiletype scala
+"autocmd! BufNewFile,BufRead *.sbt setfiletype scala
+"augroup END
+"autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
  
 " 行末、行の最初への移動のキーマップ設定
 :map! <C-e> <Esc>$a
