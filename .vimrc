@@ -16,7 +16,7 @@ NeoBundle 'Shougo/neocomplcache'
 "NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+"NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
 filetype plugin indent on     " required!
 filetype indent on
@@ -193,11 +193,11 @@ highlight PMenuSbar ctermbg=4
 "xmap <C-k>     <Plug>(neosnippet_expand_target)
 "" SuperTab like snippets behavior.
 "imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
-"\: pumvisible() ? "\<C-n>" : "\<TAB>"
+"\ \<Plug>(neosnippet_expand_or_jump)"
+"\: pumvisible() ? \<C-n>" : \<TAB>"
 "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
-"\: "\<TAB>"
+"\ \<Plug>(neosnippet_expand_or_jump)"
+"\: \<TAB>"
 " 
 "" For snippet_complete marker.
 "if has('conceal')
