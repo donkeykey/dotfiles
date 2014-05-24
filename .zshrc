@@ -10,6 +10,12 @@ elif [ `uname` = 'Linux' ]; then
 	export LSCOLORS=exfxcxdxbxegedabagacad
 	export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;36:cd=43;36:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 	zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;36' 'cd=43;36'
+elif [ `uname` = 'FreeBSD' ]; then
+	echo 'FreeBSD'
+	autoload -U compinit
+	alias ls="ls -G -F"
+	compinit
+	export LSCOLORS=gxfxcxdxbxegedabagacad
 fi
 
 
@@ -22,7 +28,7 @@ alias ec2="ssh -i /Users/daichi/.ssh/tripass.pem ec2-user@ec2-54-218-53-195.us-w
 alias west="ssh -L19998:crenata:3389 -L10123:cereus:3389 -L3456:kpj01:80 -L19997:momoclo.westlab:3389 west.sd.keio.ac.jp -l daichi"
 #alias westy="ssh -L19999:crenata:3389 west.sd.keio.ac.jp -l daichi"
 alias daichi="ssh donkeykey.dyndns.org -l daichi"
-alias ldaichi="ssh 192.168.33.66 -l daichi"
+alias ldaichi="ssh -i ~/.ssh/rasp_rsa daichi@192.168.33.66"
 alias ndaichi="ssh 192.168.33.100 -l daichi"
 alias eure="ssh www3293ua.sakura.ne.jp -l root"
 alias eureka="ssh www3293ua.sakura.ne.jp -l daichi"

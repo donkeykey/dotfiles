@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#DOT_FILES=( .zshrc .vimrc .vim .bash_profile)
+#DOT_FILES=( .zshrc .vimrc .bash_profile)
 
 ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
