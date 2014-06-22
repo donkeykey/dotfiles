@@ -15,6 +15,7 @@ NeoBundle 'Shougo/neocomplcache'
 "NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle "sudar/vim-arduino-syntax"
 "NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
 filetype plugin indent on     " required!
