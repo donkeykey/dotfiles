@@ -2,6 +2,7 @@ if [ `uname` = 'Darwin' ]; then
 	echo 'Mac'
 	alias ls="ls -G -F"
 	export PATH=/usr/local/Cellar/httpd/2.2.26/sbin:$PATH
+	export PATH="/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 elif [ `uname` = 'Linux' ]; then
 	echo 'Linux'
 	alias ls="ls -GF --color=auto"
