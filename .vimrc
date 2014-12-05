@@ -3,11 +3,12 @@ filetype off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
 endif
 " originalrepos on github
+" " test
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
+"NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
@@ -19,6 +20,7 @@ NeoBundle "sudar/vim-arduino-syntax"
 NeoBundle "toyamarinyon/vim-swift"
 "NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
+call neobundle#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
@@ -59,7 +61,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "neocomplcache設定終わり
 
 "カラースキーム
-"colorscheme jellybeans
+colorscheme darkblue
 "環境設定
 " エンコード
 "set encoding=utf8
@@ -102,18 +104,18 @@ set hlsearch
 " コマンド、検索パターンを10000個まで履歴に残す
 set history=10000
 " マウスモード有効
-set mouse=a
+"set mouse=a
 " xtermとscreen対応
-set ttymouse=xterm2
+"set ttymouse=xterm2
 " コマンドを画面最下部に表示する
 set showcmd
 " タブを表示するときの幅
 set tabstop=4
 " タブを挿入するときの幅
 set shiftwidth=4
-" タブをタブとして扱う(スペースに展開しない)
-set noexpandtab
-" 
+" タブをスペースとして扱う
+set expandtab
+"
 set softtabstop=0
 " オートインデント
 set autoindent
@@ -124,8 +126,8 @@ set autoindent
 " 行末"
 set whichwrap=b,s,h,l,<,>,[,]
 
- 
- 
+
+
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cmap w!! w !sudo tee > /dev/null %
 " ESCを二回押すことでハイライトを消す
@@ -145,7 +147,7 @@ endif
 "表示行単位で行移動する
 nnoremap <silent> j gj
 nnoremap <silent> k gk
- 
+
 " PHP用設定
 " PHP辞書ファイル指定
 autocmd FileType php,ctp :set dictionary=~/.vim/dictionary/php.dict
@@ -168,7 +170,7 @@ let php_parent_error_open = 1
 " SQLのPHP文字リテラルへの整形(:Sqltop, :Sqlfromp)
 function! SQLToPHP()
 %s/^\(.\+\)$/"\1 " \./g
- 
+
 normal G$
 execute "normal ?.&lt;CR&gt;"
 normal xxggVG
@@ -177,7 +179,7 @@ endfunction
 command! Sqltop :call SQLToPHP()
 function! SQLFromPHP()
 %s/^"\(.\+\) " *\.*$/\1/g
- 
+
 normal ggVG
 echo "Convert from PHP String is finished."
 endfunction
@@ -201,7 +203,7 @@ highlight PMenuSbar ctermbg=4
 "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "\ \<Plug>(neosnippet_expand_or_jump)"
 "\: \<TAB>"
-" 
+"
 "" For snippet_complete marker.
 "if has('conceal')
 "  set conceallevel=2 concealcursor=i
@@ -210,12 +212,12 @@ highlight PMenuSbar ctermbg=4
 "let g:neosnippet#snippets_directory='~/.vim/snippets/snippets'
 "" Define dictionary.
 "let g:neocomplcache_dictionary_filetype_lists = { 'default'    : '', 'perl'       : $HOME . '/.vim/dict/perl.dict' }
- 
+
 " Java用設定
 "SQLのJava文字リテラルへの整形(:Sqltoj, :Sqlfromj)
 function! SQLToJava()
 %s/^\(.\+\)$/"\1 " \+/g
- 
+
 normal G$
 execute "normal ?+\&lt;CR&gt;"
 normal xxggVG
@@ -224,17 +226,17 @@ endfunction
 command! Sqltoj :call SQLToJava()
 function! SQLFromJava()
 %s/^"\(.\+\) " *+*$/\1/g
- 
+
 normal ggVG
 echo "Convert from Java String is finished."
 endfunction
 command! Sqlfromj :call SQLFromJava()
- 
+
 " Ruby用設定
 " :makeでRuby構文チェック
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%m\ in\ %f\ on\ line\ %l
- 
+
 " Scala用設定
 " ファイルタイプの追加
 "augroup filetypedetect
@@ -242,25 +244,25 @@ au FileType ruby setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 "autocmd! BufNewFile,BufRead *.sbt setfiletype scala
 "augroup END
 "autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
- 
+
 " 行末、行の最初への移動のキーマップ設定
 :map! <C-e> <Esc>$a
 :map! <C-a> <Esc>^a
 :map <C-e> <Esc>$a
 :map <C-a> <Esc>^a
- 
+
 " Ctrl+dで$、Ctrl+aで@
 inoremap <C-d> $
 inoremap <C-a> @
- 
+
 " \ + rでスクリプト実行
 nmap <Leader>r <plug>(quickrun)
- 
+
 " 全角スペースのハイライトを設定
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
 endfunction
- 
+
 if has('syntax')
   augroup ZenkakuSpace
     autocmd!
