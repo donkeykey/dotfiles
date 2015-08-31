@@ -29,7 +29,7 @@ alias ec2="ssh -i /Users/daichi/.ssh/tripass.pem ec2-user@ec2-54-218-53-195.us-w
 alias west="ssh -L19998:crenata:3389 -L10123:cereus:3389 -L3456:kpj01:80 -L19997:momoclo.westlab:3389 west.sd.keio.ac.jp -l daichi"
 #alias westy="ssh -L19999:crenata:3389 west.sd.keio.ac.jp -l daichi"
 alias daichi="ssh donkeykey.dyndns.org -l daichi"
-alias ldaichi="ssh -i ~/.ssh/rasp_rsa daichi@192.168.33.66"
+alias ldaichi="ssh -i ~/.ssh/rasp_rsa daichi@192.168.33.88"
 alias ndaichi="ssh 192.168.33.100 -l daichi"
 alias eure="ssh www3293ua.sakura.ne.jp -l root"
 alias eureka="ssh www3293ua.sakura.ne.jp -l daichi"
@@ -44,25 +44,50 @@ alias down_wmv="mv /Users/daichi/Documents/*.wmv /Volumes/Daichi-1/atarashi/seis
 alias down_flv="mv /Users/daichi/Documents/*.flv /Volumes/Daichi-1/atarashi/seisan/download"
 alias down_zip="mv /Users/daichi/Documents/*.zip /Volumes/Daichi-1/atarashi/seisan/download"
 alias kokuhaku="ssh kokuhakutest2.sakura.ne.jp -l kokuhakutest2"
+alias kuzu="ssh kuzuharakenta.com -p 61389 -l daichi"
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
 #setenv LS_COLORS 'no=0:fi=0:di=34:ln=31:ex=0:*.c=1:*.tex=1'
 
+# VCSの情報を取得するzshの便利関数 vcs_infoを使う
+autoload -Uz vcs_info
 
+# 表示フォーマットの指定
+# %b ブランチ情報
+# %a アクション名(mergeなど)
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
+#RPROMPT="%1(v|%F{green}%1v%f|)"
 
 case ${UID} in
 	0) #for super user
-		RPROMPT='(%~)'
+		RPROMPT='%1(v|%F{green}%1v%f|)(%~)'
 		PROMPT=$'%B%m%b:%?:%# '
 		;;
 	*)
-		RPROMPT='(%~)'
+		RPROMPT='%1(v|%F{green}%1v%f|)(%~)'
 		PROMPT=$'%m: %n %D{%T} %{%F{cyan}%}%#%{%f%} '
 esac
 
 
 
-
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+# 重複を記録しない
+setopt hist_ignore_dups
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
 
 
 
@@ -214,3 +239,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #		zle expand-or-complete-prefix
 #	fi
 #}
+
