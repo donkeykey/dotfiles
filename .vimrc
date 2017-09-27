@@ -18,6 +18,7 @@ NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle "sudar/vim-arduino-syntax"
 NeoBundle "toyamarinyon/vim-swift"
+NeoBundle 'posva/vim-vue'
 "NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
 call neobundle#end()

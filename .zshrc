@@ -2,7 +2,7 @@ if [ `uname` = 'Darwin' ]; then
 	echo 'Mac'
 	alias ls="ls -G -F"
 	export PATH=/usr/local/Cellar/httpd/2.2.26/sbin:$PATH
-	export PATH="/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+	export PATH="/Users/daichi/BirdmanProject/educ/of:/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 elif [ `uname` = 'Linux' ]; then
 	echo 'Linux'
 	alias ls="ls -GF --color=auto"
@@ -47,10 +47,13 @@ alias kokuhaku="ssh kokuhakutest2.sakura.ne.jp -l kokuhakutest2"
 alias kuzu="ssh kuzuharakenta.com -p 61389 -l daichi"
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
+
 #setenv LS_COLORS 'no=0:fi=0:di=34:ln=31:ex=0:*.c=1:*.tex=1'
 
 # VCSの情報を取得するzshの便利関数 vcs_infoを使う
 autoload -Uz vcs_info
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
 
 # 表示フォーマットの指定
 # %b ブランチ情報
@@ -96,6 +99,19 @@ setopt EXTENDED_HISTORY
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# nvm設定
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+nvm use default
+npm_dir=${NVM_PATH}_modules
+#export NODE_PATH=$npm_dir
+
+source ~/.nvm/nvm.sh
+
+export NODE_PATH=`npm root -g`
+
+export PATH=/Developer/NVIDIA/CUDA-8.0/bin:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib:$DYLD_LIBRARY_PATH
 
 # Incremental completion for zsh
 # by y.fujii <y-fujii at mimosa-pudica.net>, public domain
@@ -240,3 +256,20 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #	fi
 #}
 
+#  source '/Users/daichi/Downloads/google-cloud-sdk/path.zsh.inc'
+#fi
+#  source '/Users/daichi/Downloads/google-cloud-sdk/completion.zsh.inc'
+#fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/daichi/Downloads/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/daichi/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/daichi/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/daichi/Downloads/google-cloud-sdk/completion.zsh.inc'
+fi
+
+### Added by the Bluemix CLI
+source /usr/local/Bluemix/bx/zsh_autocomplete
